@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.haalthy.service.persistence.UserMapper">
+
+       	<cache eviction="LRU"
+		   type="com.haalthy.service.cache.MybatisRedisCache" flushInterval="8640000"
+		   size="1000" readOnly="true" />
+
+	<insert id="addUserV20160418" useGeneratedKeys="true"
+			keyProperty="UserID" keyColumn="UserID" flushCache="true">
+		INSERT INTO user (Username,Displayname,Password,Email, CreateDate, UpdateDate, FollowCount, CancerType, Pathological, Stage, IsSmoking, metastasis, Gender, Age, userType, geneticMutation, deviceToken, phone,openid)
+		VALUES (#{username},#{displayname},#{password},#{email},#{createDate}, #{updateDate}, #{followCount}, #{cancerType}, #{pathological}, #{stage}, #{isSmoking}, #{metastasis}, #{gender}, #{age}, #{userType}, #{geneticMutation}, #{deviceToken}, #{phone},#{openid})
+	</insert>
+
+
+	<update id="updateUserV20160418" parameterType="User" flushCache="true">
+		UPDATE user SET
+		<if test="displayname != null and displayname != ''">
+			DISPLAYNAME = #{displayname},
+		</if>
+		<if test="gender != null and gender != ''">
+			Gender = #{gender},
+		</if>
+		<if test="pathological != null and pathological != ''">
+			Pathological = #{pathological},
+
+		</if>
+		<if test="stage != null and stage != ''">
+			Stage = #{stage},</if>
+		<if test="cancerType != null and cancerType != ''">
+			CancerType = #{cancerType},
+
+		</if>
+		<if test="metastasis != null and metastasis !=''">
+			metastasis = #{metastasis},</if>
+		<if test="geneticMutation != null and geneticMutation != ''">
+			geneticMutation = #{geneticMutation},</if>
+		<if test="deviceToken != null and deviceToken != ''">
+			deviceToken = #{deviceToken},</if>
+		<if test="isSmoking != null and isSmoking != 0">
+			IsSmoking = #{isSmoking},</if>
+		<if test="age != null and age != 0">
+			Age = #{age},
+		</if>
+		UpdateDate = #{updateDate}
+		WHERE username = #{username}
+
+	</update>
+
+	<select id="checkUserEmailV20160418" parameterType="string" resultType="int">
+		select count(1) acount from user where EMAIL = #{keyword}
+	</select>
+
+	<select id="checkUserPhoneV20160418" parameterType="string" resultType="int">
+		select count(1) acount from user where phone = #{keyword}
+	</select>
+</mapper>
+

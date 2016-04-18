@@ -117,6 +117,7 @@
  			 VALUES (#{username},#{displayname},#{password},#{email},#{createDate}, #{updateDate}, #{followCount}, #{cancerType}, #{pathological}, #{stage}, #{isSmoking}, #{metastasis}, #{gender}, #{age}, #{userType}, #{geneticMutation}, #{deviceToken}, #{phone},#{openid})
 	</insert>
 	
+
 	<update id="updateUser" parameterType="User" flushCache="true">
     UPDATE user SET
       	EMAIL = #{email},
