@@ -3,7 +3,7 @@ package com.haalthy.service.controller.user;
 import com.haalthy.service.JPush.JPushService;
 import com.haalthy.service.controller.Interface.ContentStringEapsulate;
 import com.haalthy.service.controller.Interface.Response;
-import com.haalthy.service.domain.User;
+import com.haalthy.service.domain.UserV20160418;
 import com.haalthy.service.openservice.UserService;
 import com.haalthy.service.openservice.UserServiceV20160418;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class UserSecurityControllerV20160418 {
 
     @RequestMapping(value = "/update",method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
-    public Response updateUserV20160418(@RequestBody User user) throws Exception
+    public Response updateUserV20160418(@RequestBody UserV20160418 user) throws Exception
     {
         Response response = new Response();
         if(userServiceV20160418.updateUserV20160418(user) == 1)

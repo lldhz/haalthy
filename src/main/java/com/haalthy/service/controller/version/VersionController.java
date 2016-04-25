@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by ken on 18/4/16.
  */
 @Controller
-@RequestMapping("/open/api")
+@RequestMapping(headers = "api-version=2016-04-18")
 public class VersionController {
+    final String mapping = "/open/api/version";
 
-    @RequestMapping(value = "/version", method = RequestMethod.GET, headers = "Accept=application/json",
+    @RequestMapping(value = mapping, method = RequestMethod.GET, headers = "Accept=application/json",
             produces = {"application/json"})
     @ResponseBody
     public Response GetAPIVersion()

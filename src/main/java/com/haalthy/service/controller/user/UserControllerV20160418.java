@@ -4,6 +4,7 @@ import com.haalthy.service.JPush.JPushService;
 import com.haalthy.service.controller.Interface.ContentStringEapsulate;
 import com.haalthy.service.controller.Interface.Response;
 import com.haalthy.service.domain.User;
+import com.haalthy.service.domain.UserV20160418;
 import com.haalthy.service.openservice.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -66,32 +67,10 @@ public class UserControllerV20160418 {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
-    public Response addUserV20160418(@RequestBody User user) throws Exception
+    public Response addUserV20160418(@RequestBody UserV20160418 user) throws Exception
     {
         Response response = new Response();
         try {
-            user.setPassword(decodePassword(user.getPassword()));
-            if (user.getUserType().equals("AY")) {
-                String username = generateUsername("AY");
-                user.setUsername(username);
-            }
-            if (user.getUserType().equals("WC")) {
-                String username = generateUsername("WC");
-                user.setUsername(username);
-            }
-            // set encoded password
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String hashedPassword = passwordEncoder.encode(user.getPassword());
-            user.setPassword(hashedPassword);
-
-            // set create date and update date
-            Date now = new Date();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String currentDt = sdf.format(now);
-            user.setCreateDate(currentDt);
-            user.setUpdateDate(currentDt);
-            user.setFollowCount(0);
-            if (user.getEmail() == "")
                 user.setEmail(null);
             if (user.getPhone() == "")
                 user.setPhone(null);
@@ -118,6 +97,27 @@ public class UserControllerV20160418 {
                     }
                     else
                     {
+                        user.setPassword(decodePassword(user.getPassword()));
+                        if (user.getUserType().equals("AY")) {
+                            String username = generateUsername("AY");
+                            user.setUsername(username);
+                        }
+                        if (user.getUserType().equals("WC")) {
+                            String username = generateUsername("WC");
+                            user.setUsername(username);
+                        }
+                        // set encoded password
+                        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                        String hashedPassword = passwordEncoder.encode(user.getPassword());
+                        user.setPassword(hashedPassword);
+
+                        // set create date and update date
+                        Date now = new Date();
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String currentDt = sdf.format(now);
+                        user.setCreateDate(currentDt);
+                        user.setUpdateDate(currentDt);
+                        if (user.getEmail() == "")
                         if(userServiceV20160418.addUserV20160418(user) == 1)
                         {
                             response.setResult(1);
