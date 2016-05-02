@@ -4,7 +4,6 @@ import com.haalthy.service.JPush.JPushService;
 import com.haalthy.service.controller.Interface.ContentStringEapsulate;
 import com.haalthy.service.controller.Interface.Response;
 import com.haalthy.service.domain.User;
-import com.haalthy.service.domain.UserV20160418;
 import com.haalthy.service.openservice.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -67,7 +66,7 @@ public class UserControllerV20160418 {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST, headers = "Accept=application/json", produces = {"application/json"}, consumes = {"application/json"})
     @ResponseBody
-    public Response addUserV20160418(@RequestBody UserV20160418 user) throws Exception
+    public Response addUserV20160418(@RequestBody User user) throws Exception
     {
         Response response = new Response();
         try {

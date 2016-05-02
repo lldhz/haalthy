@@ -271,7 +271,7 @@
 	</dependencies>
 
     <build>
-        <finalName>haalthyservicecontent</finalName>
+        <finalName>haalthyservice</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

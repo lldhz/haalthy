@@ -22,7 +22,7 @@ public class RedisCachePool {
         config.setMaxTotal(500);
         config.setMaxIdle(5);
         config.setMaxWaitMillis(1000 * 100);
-        config.setTestOnBorrow(false);
+        config.setTestOnBorrow(true);
         pool = new JedisPool(config,
                 configLoader.getRedisProperty("cache.redis.host"),
                 Integer.valueOf(configLoader.getRedisProperty("cache.redis.mybatis.port")),

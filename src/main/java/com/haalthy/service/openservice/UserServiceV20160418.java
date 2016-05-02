@@ -1,6 +1,6 @@
 package com.haalthy.service.openservice;
 
-import com.haalthy.service.domain.UserV20160418;
+import com.haalthy.service.domain.User;
 import com.haalthy.service.persistence.UserMapperV20160418;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +14,12 @@ public class UserServiceV20160418 {
     @Autowired
     private UserMapperV20160418 userMapperV20160418;
 
-    public int addUserV20160418(UserV20160418 user)
+    public int addUserV20160418(User user)
     {
         return userMapperV20160418.addUserV20160418(user);
     }
 
-    public int updateUserV20160418(UserV20160418 user)
+    public int updateUserV20160418(User user)
     {
         return userMapperV20160418.updateUserV20160418(user);
     }
