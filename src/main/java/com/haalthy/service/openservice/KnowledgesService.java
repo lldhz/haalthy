@@ -83,4 +83,9 @@ public class KnowledgesService {
         }
         return resultList;
     }
+
+    public List<Knowledges> getKnowLedgesByUuids(List<String> uuids)
+    {
+        return knowledgesMapper.selectKnowledgesByUuids(uuids);
+    }
 }
