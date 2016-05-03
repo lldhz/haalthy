@@ -25,23 +25,30 @@
           where uuid = #{uuid}
     </update>
 
+    <select id="selectKnowledgesbyKeyword" parameterType="String" resultType="Knowledges" flushCache="false">
+        select uuid,title,comment,keywords, category,create_id,create_time,update_id,update_time from knowledges
+        where (title like concat(concat("%",#{keywords}),"%") or comment like concat(concat("%",#{keywords}),"%")) and categote &lt;= #{categote}
+    </select>
+
+
     <select id="selectKnowledgesTitle" parameterType="Knowledges" resultType="Knowledges" flushCache="false">
         select uuid,title,comment,keywords, category,create_id,create_time,update_id,update_time from knowledges
-        where title like "*"+#{keywords}+"*" and categote &lt;= #{categote}
+        where title like concat(concat("%",#{keywords}),"%") and categote &lt;= #{categote}
     </select>
 
     <select id="selectKnowledgesComment" parameterType="Knowledges" resultType="Knowledges" flushCache="false">
         select uuid,title,comment,keywords, category,create_id,create_time,update_id,update_time from knowledges
-        where title like "*"+#{keywords}+"*" and categote &lt;= #{categote}
+        where comment like concat(concat("%",#{keywords}),"%") and categote &lt;= #{categote}
     </select>
 
     <select id="selectKnowledgesKeywords" parameterType="Knowledges" resultType="Knowledges" flushCache="false">
         select uuid,title,comment,keywords, category,create_id,create_time,update_id,update_time from knowledges
-        where title like "*"+#{keywords}+"*" and categote &lt;= #{categote}
+        where keywords like concat(concat("%",#{keywords}),"%") and categote &lt;= #{categote}
     </select>
 
     <select id="selectKnowledgesUuid" parameterType="Knowledges" resultType="Knowledges" flushCache="false">
         select uuid,title,comment,keywords, category,create_id,create_time,update_id,update_time from knowledges
         where uuid = #{uuid}
     </select>
+
 </mapper>
