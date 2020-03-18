@@ -10,7 +10,7 @@
     <properties>
         <jdk.version>1.8</jdk.version>
         <spring.version>4.2.5.RELEASE</spring.version>
-        <spring.security.oauth.version>1.0.5.RELEASE</spring.security.oauth.version>
+        <spring.security.oauth.version>2.0.18.RELEASE</spring.security.oauth.version>
     </properties>
 
     <dependencies>
